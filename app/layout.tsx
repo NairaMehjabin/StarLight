@@ -21,7 +21,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     { name: 'Dashboard', path: '/' },
     { name: 'More Projects', path: '/projects' },
     { name: 'Contact Me', path: '/contact' },
-    { name: 'Skill Archive', path: '/skills' },
+    { name: 'Skills', path: '/skills' },
+    { name: 'Services', path: '/services' }
   ];
 
   const [trackIndex, setTrackIndex] = useState(0);

@@ -51,6 +51,54 @@ const tagVariants: Variants = {
 export default function ProjectsPage() {
   const projects = [
     {
+      id: 8,
+      title: "Chitrabeethi",
+      description: "An online art gallery showcase featuring traditional and digital artwork exhibits with smooth dynamic curation.",
+      fullDetails: "Chitrabeethi is a full-stack art curation platform. Built with Next.js App Router on the frontend and an independent backend service to handle gallery dynamics, artwork exhibits, and client communications seamlessly.",
+      challenges: [
+        "Handling high-resolution image rendering without page latency.",
+        "Synchronizing dynamic gallery state across independent frontend & backend setups."
+      ],
+      hardFeature: "Dynamic Image Optimization Pipeline & Decoupled API Auth State",
+      futurePlans: [
+        "Interactive 3D Virtual Art Exhibition Room (Three.js / WebGL)",
+        "Artist Commissions Booking System & Direct Payment Gateway Integration",
+        "AI-Powered Artwork Tagging & Aesthetic Search Filters"
+      ],
+      tags: ["Next.js", "TypeScript", "Tailwind", "Node.js"],
+      link: "https://chitrabeethi-client-ten.vercel.app/",
+      githubFrontend: "https://github.com/Mst-Gulnahar/chitrabeethi-client",
+      githubBackend: "https://github.com/Mst-Gulnahar/chitrabeethi-server",
+      accent: "#710755",
+      items: ["Gallery Showcase - Live", "Backend API - Active", "Artwork Exhibits - Dynamic"],
+      emoji: "🖼️",
+      type: "Full-Stack Gallery"
+    },
+    {
+      id: 7,
+      title: "Cinnabloom Bakery",
+      description: "A cozy bakery storefront and order management app serving sweet treats and handcrafted pastries.",
+      fullDetails: "Cinnabloom Bakery features full dynamic menu listings, order handling state logic, and relational data architecture powered by MySQL to track bakery products and orders reliably.",
+      challenges: [
+        "Structuring complex relational database queries for real-time inventory management.",
+        "Preventing dynamic order state mismatch during rapid item additions."
+      ],
+      hardFeature: "Relational MySQL Transaction Handlers for Live Order Management",
+      futurePlans: [
+        "Custom Cake Builder with Live Visual Decorator Preview",
+        "SMS Order Status Notifications (Twilio / SMS Gateway)",
+        "Subscription Box Service for Fresh Weekly Baked Goods"
+      ],
+      tags: ["Next.js", "TypeScript", "Tailwind", "MySQL"],
+      link: "https://cinnabloom-bakery.vercel.app/",
+      githubFrontend: "https://github.com/Mst-Gulnahar/cinnabloom-bakery",
+      githubBackend: "https://github.com/Mst-Gulnahar/cinnabloom-bakery-server",
+      accent: "#AA0235",
+      items: ["Bakery Menu - Live", "Order API - Functional", "Product DB - Integrated"],
+      emoji: "🥐",
+      type: "Food Delivery App"
+    },
+    {
       id: 6,
       title: "Sun Cart Store",
       description: "A bright, high-performance e-commerce storefront currently under development. Focused on seamless transitions and a sun-kissed aesthetic.",

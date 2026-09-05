@@ -107,13 +107,17 @@ export default function SkillsPage() {
         { name: "JavaScript", level: "Expert" }, 
         { name: "React", level: "Expert" }, 
         { name: "Next.js", level: "Advanced" }, 
-        { name: "Vite", level: "Advanced" }
+        { name: "Tailwind CSS", level: "Expert" },
+        { name: "Vite", level: "Advanced" },
+        { name: "HTML5 / CSS3", level: "Expert" }
       ] 
     },
     { 
       title: "Backend Garden", 
       icon: <ShieldCheck />, 
       skills: [
+        { name: "Node.js", level: "Advanced" },
+        { name: "MongoDB", level: "Advanced" },
         { name: "MySQL", level: "Advanced" }, 
         { name: "Prisma", level: "Expert" }, 
         { name: "HeidiSQL", level: "Power User" }, 
@@ -128,9 +132,12 @@ export default function SkillsPage() {
       icon: <Hammer />, 
       skills: [
         { name: "Framer Motion", level: "Expert" }, 
+        { name: "VS Code", level: "Power User" },
         { name: "Vercel", level: "Expert" }, 
-        { name: "Daisy UI", level: "Expert" }, 
-        { name: "GitHub", level: "Advanced" }
+        { name: "Render", level: "Advanced" },
+        { name: "Git & GitHub", level: "Advanced" },
+        { name: "Daisy UI", level: "Expert" },
+        { name: "Figma conversion", level: "Expert" }
       ] 
     }
   ];
@@ -165,7 +172,6 @@ export default function SkillsPage() {
                   className="p-3 rounded-2xl shadow-sm border-2 border-[#8b5a2b]/10 bg-white" 
                   style={{ color: "#8b5a2b" }}
                 >
-                   {/* FIXED LINE BELOW: Added <any> to prevent Vercel Build Error */}
                    {React.cloneElement(cat.icon as React.ReactElement<any>, { size: 24 })}
                 </motion.div>
                 <h2 className="text-3xl md:text-4xl font-black uppercase italic tracking-tighter text-[#5d3d1e]">
