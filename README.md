@@ -1,4 +1,4 @@
-# ✨ St4rLigh7 | Creative Frontend Developer Portfolio
+# ✨ St4rLigh7 | My Portfolio
 
 Welcome to my digital corner of the internet. This is a high-performance, immersive portfolio designed to showcase the intersection of code, art, and storytelling.
 
