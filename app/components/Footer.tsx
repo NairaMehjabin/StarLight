@@ -45,7 +45,7 @@ export default function Footer() {
       {/* Main Text Content */}
       <div className="flex flex-col items-center gap-1 z-10">
         <div className="text-[10px] font-[1000] text-white tracking-[0.4em] uppercase italic">
-          Made with Art // Nyra Lab
+          Made with Art // And by Naira
         </div>
         
         <div className="text-[9px] font-bold text-white/99 tracking-widest uppercase">

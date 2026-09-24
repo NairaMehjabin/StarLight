@@ -28,11 +28,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [duration, setDuration] = useState(0);
   const [showLibrary, setShowLibrary] = useState(false);
   
   const audioRef = useRef<HTMLAudioElement>(null);
-  const audioContextRef = useRef<AudioContext | null>(null);
   const libraryRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -116,15 +114,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             backgroundSize: '50px 50px' 
           }} 
         />
-        
+
         {/* MAIN WINDOW */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           style={{ y: waveEffect }}
           className="relative z-30 w-[95%] md:w-full max-w-5xl h-[88vh] border-[3px] border-[#8b5a2b] rounded-[1.5rem] md:rounded-[2rem] shadow-[0px_10px_0px_0px_rgba(139,90,43,0.1)] bg-[#fffdf5] flex flex-col overflow-hidden"
         >
-          {/* INTERNAL CONTENT BACKGROUND (Clean - No Dots) */}
+          {/* INTERNAL CONTENT BACKGROUND */}
           <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
             <div 
               className="w-full h-full" 
@@ -155,10 +153,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             {/* SCROLLABLE AREA */}
             <div ref={scrollContainerRef} className="flex-1 overflow-y-auto custom-scrollbar relative z-20 lenis-container">
-                <div className="relative z-10 min-h-full">
-                  {children}
-                  <Footer />
-                </div>
+              <div className="relative z-10 min-h-full">
+                {children}
+                <Footer />
+              </div>
             </div>
           </div>
         </motion.div>

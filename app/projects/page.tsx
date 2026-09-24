@@ -1,7 +1,7 @@
 "use client";
 
-import React from 'react';
-import { motion, Variants } from 'framer-motion'; 
+import React, { useState } from 'react';
+import { motion, Variants, AnimatePresence } from 'framer-motion'; 
 import { 
   ExternalLink, 
   Star, 
@@ -11,9 +11,36 @@ import {
   Users, 
   PawPrint, 
   ChefHat,
-  Construction,
-  ShoppingCart
+  ShoppingCart,
+  Github,
+  Info,
+  X,
+  Code2,
+  Database,
+  ImageIcon,
+  AlertTriangle,
+  Zap,
+  Rocket
 } from 'lucide-react';
+
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  fullDetails?: string;
+  challenges?: string[];
+  hardFeature?: string;
+  futurePlans?: string[];
+  tags: string[];
+  link: string;
+  github?: string;
+  githubFrontend?: string;
+  githubBackend?: string;
+  accent: string;
+  items: string[];
+  emoji: string;
+  type: string;
+}
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -49,7 +76,9 @@ const tagVariants: Variants = {
 };
 
 export default function ProjectsPage() {
-  const projects = [
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const projects: Project[] = [
     {
       id: 8,
       title: "Chitrabeethi",
@@ -102,9 +131,21 @@ export default function ProjectsPage() {
       id: 6,
       title: "Sun Cart Store",
       description: "A bright, high-performance e-commerce storefront currently under development. Focused on seamless transitions and a sun-kissed aesthetic.",
+      fullDetails: "Sun Cart Store focuses on building an effortless shopping user experience. Built with Next.js App Router and Framer Motion for organic page transitions.",
+      challenges: [
+        "Ensuring smooth 60fps Framer Motion transitions across complex layout shifts.",
+        "Optimizing multi-device responsiveness for dense card components."
+      ],
+      hardFeature: "Shared Layout Animations during Fast Route Navigation",
+      futurePlans: [
+        "Stripe & SSLCommerz Multi-Currency Checkout Integration",
+        "User Wishlist & Saved Cart Syncing across Browsers",
+        "AR Product Preview Mode for Mobile Users"
+      ],
       tags: ["Next.js", "Tailwind", "Framer Motion"],
       link: "https://suncart-store-wine.vercel.app/", 
-      accent: "#f59e0b", 
+      github: "https://github.com/PixelStudio330/suncart-store",
+      accent: "#f59e0b",
       items: ["Storefront - Ongoing", "Cart Logic - Pending", "Responsive Design - In Progress"],
       emoji: "☀️",
       type: "Ongoing Project"
@@ -113,9 +154,21 @@ export default function ProjectsPage() {
       id: 5,
       title: "Chirp Heavens",
       description: "A professional bird shop template featuring a corporate-clean aesthetic. Built for high-conversion with a sophisticated product algorithm.",
+      fullDetails: "Chirp Heavens bridges clean corporate structure with a playful product showcase. Includes specialized sorting algorithms for bird care packages and modular TypeScript architecture.",
+      challenges: [
+        "Writing type-safe filter criteria across deeply nested bird species traits.",
+        "Creating custom interactive sorting triggers without sacrificing speed."
+      ],
+      hardFeature: "Multi-Filter Real-time Search Algorithm in Pure TypeScript",
+      futurePlans: [
+        "Interactive Bird Species Compatibility Quiz Tool",
+        "Live Veterinary Q&A Consultation Booking System",
+        "Automated Bird Seed Subscription Management Dashboard"
+      ],
       tags: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
       link: "https://chirp-heaven.vercel.app/",
-      accent: "#4A90E2", 
+      github: "https://github.com/PixelStudio330/chirp-heaven",
+      accent: "#4A90E2",
       items: ["Bird Discovery - Product Algorithm", "Order Logistics - Live Tracking", "Functional Nest - Smart Cart"],
       emoji: "🐦",
       type: "Bird Shop Template"
@@ -124,41 +177,90 @@ export default function ProjectsPage() {
       id: 4,
       title: "The Dum Pot",
       description: "A premium Biryani delivery experience. Featuring a complex state-managed ordering system, persistent cart logic, and a slow-cooked aesthetic.",
+      fullDetails: "Designed to make food ordering visually mouth-watering and technically seamless. Implements client-side state persistence to ensure user cart items remain saved.",
+      challenges: [
+        "Handling complex item customization modifiers (spiciness, portions, add-ons).",
+        "Keeping cart state perfectly synchronized with localStorage across browser refreshes."
+      ],
+      hardFeature: "Persistent Local Storage State Manager with Custom Modifiers",
+      futurePlans: [
+        "Real-Time Delivery Driver GPS Tracking Integration",
+        "Group Order Mode (Shareable Cart Link for Friends)",
+        "Loyalty Rewards Program & Discount Coupon Engine"
+      ],
       tags: ["Next.js", "Framer Motion", "Tailwind", "Lucide"],
       link: "https://the-dum-pot.vercel.app/",
+      github: "https://github.com/PixelStudio330/the-dum-pot",
       accent: "#FF9933",
       items: ["Smart Order Blocker - Live State", "Dynamic Menu - Interactive", "Persistent Feast - Cart Logic"],
       emoji: "🍲",
       type: "E-commerce Experience"
     },
     {
+      id: 2,
+      title: "Pawsky Wawsky",
+      description: "A documentary-style pet sanctuary template designed for emotional storytelling. Features high-end performance with a scrapbook aesthetic.",
+      fullDetails: "Pawsky Wawsky is a sanctuary platform showcasing adoption profiles, care stories, and interactive pet logs built with robust frontend rendering optimization.",
+      challenges: [
+        "Maintaining a vintage scrapbook aesthetic using strict modern grid layouts.",
+        "Handling multi-media modal views smoothly on small viewports."
+      ],
+      hardFeature: "Dynamic Scrapbook Micro-Animations & Responsive Dynamic Overlays",
+      futurePlans: [
+        "Pet Adoption Matching Questionnaire with AI Recommendation Engine",
+        "Pet Health Record Tracker & Vaccine Reminder Calendar",
+        "Community Pet Adoption Story Submissions & Forum"
+      ],
+      tags: ["Next.js", "TypeScript", "Framer Motion", "Tailwind"],
+      link: "https://pawsky-wawsky-client.vercel.app/",
+      githubFrontend: "https://github.com/PixelStudio330/pawsky-wawsky-client",
+      githubBackend: "https://github.com/PixelStudio330/pawsky-wawsky-server",
+      accent: "#021233",
+      items: ["Pet Profiles - Live Demo", "Modern Architecture - Optimized"],
+      emoji: "🐾",
+      type: "Pet Shop Template"
+    },
+    {
       id: 1,
       title: "Honey Haze",
       description: "A cozy bakery management system and storefront. Built with a full-stack approach to handle delicious treats and orders with a sweet touch.",
+      fullDetails: "A full-stack bakery web app powered by PostgreSQL and Prisma ORM. Handles full data persistence for bakery items and dynamic order tracking.",
+      challenges: [
+        "Managing PostgreSQL schema migrations safely in development.",
+        "Synchronizing live delivery status transitions dynamically."
+      ],
+      hardFeature: "Real-time Order Status Pipeline via Prisma ORM & PostgreSQL",
+      futurePlans: [
+        "WebSocket Integration for Instant Kitchen Order Alerts",
+        "Multi-Branch Store Inventory Syncing",
+        "Customer Review & Star Rating System with Photo Uploads"
+      ],
       tags: ["Next.js", "Prisma", "PostgreSQL", "Tailwind"],
       link: "https://honey-haze.vercel.app/",
+      github: "https://github.com/PixelStudio330/honey-haze",
       accent: "#FFB347",
       items: ["AI delivery man - Order tracker", "Interactive cart - Stunning UI"],
       emoji: "🍯",
       type: "Experimental Full-Stack Project"
     },
     {
-      id: 2,
-      title: "Pawsky Wawsky",
-      description: "A documentary-style pet sanctuary template designed for emotional storytelling. Features high-end performance with a scrapbook aesthetic.",
-      tags: ["Next.js", "TypeScript", "Framer Motion", "Tailwind"],
-      link: "https://pawsky-wawsky.vercel.app/",
-      accent: "#76A8D6",
-      items: ["Pet Profiles - Live Demo", "Modern Architecture - Optimized"],
-      emoji: "🐾",
-      type: "Pet Shop Template"
-    },
-    {
       id: 3,
       title: "PixelStudio",
       description: "Our official creative agency HQ. A collaboration with Nova for building high-end, artsy digital solutions for global clients.",
+      fullDetails: "The main studio landing page and agency site showcasing high-end portfolio work, client services, and custom design systems.",
+      challenges: [
+        "Crafting a cohesive agency brand identity using customized design tokens.",
+        "Balancing heavy motion graphic design with optimal web core vitals."
+      ],
+      hardFeature: "Custom Motion Design System built with Reusable Framer Motion Wrappers",
+      futurePlans: [
+        "Interactive Project Cost Estimator & Quote Generator",
+        "Client Portal for Real-time Project Progress Tracking",
+        "Blog & Design System Case Study Hub"
+      ],
       tags: ["Next.js", "TypeScript", "Tailwind", "React", "Vercel"],
       link: "https://pixel-studio-opal.vercel.app/",
+      github: "https://github.com/PixelStudio330/pixel_studio",
       accent: "#729d4d",
       items: ["Custom Web Design - Inquire", "Full-Stack Dev - Official"],
       emoji: "🎨",
@@ -167,162 +269,414 @@ export default function ProjectsPage() {
   ];
 
   return (
-    <motion.div 
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-      className="p-6 md:p-10 space-y-12"
-    >
+    <>
       <motion.div 
-        variants={cardVariants}
-        className="flex items-center gap-4 border-b-[3px] border-dashed border-[#8b5a2b] pb-6"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="p-6 md:p-10 space-y-12 selection:bg-[#c45a5a] selection:text-white"
       >
+        {/* HEADER SECTION */}
         <motion.div 
-          animate={{ rotate: [3, -3, 3] }}
-          transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-          className="bg-[#c45a5a] text-white p-3 rounded-xl shadow-md"
+          variants={cardVariants}
+          className="flex items-center gap-4 border-b-[3px] border-dashed border-[#8b5a2b] pb-6"
         >
-          <Star fill="currentColor" size={24} />
-        </motion.div>
-        <div>
-          <h2 className="text-3xl font-[900] text-[#5d3d1e] uppercase tracking-tighter italic">The Archive</h2>
-          <p className="text-sm font-black text-[#4a632a] uppercase tracking-widest">Hand-crafted code & design</p>
-        </div>
-      </motion.div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        {projects.map((project) => (
           <motion.div 
-            key={project.id}
-            variants={cardVariants}
-            whileHover="hover"
-            className="relative group col-span-1"
+            animate={{ rotate: [3, -3, 3] }}
+            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            className="bg-[#c45a5a] text-white p-3 rounded-xl shadow-md border-2 border-[#8b5a2b]"
           >
-            <div className="absolute inset-0 bg-[#8b5a2b] rounded-[2.5rem] translate-x-3 translate-y-3 opacity-10 group-hover:translate-x-4 group-hover:translate-y-4 transition-transform" />
-            
-            <div className="relative bg-white border-[4px] border-[#8b5a2b] rounded-[2.5rem] p-7 shadow-md overflow-hidden h-full flex flex-col">
-              
-              {/* LIVE IFRAME FEED - Centered & Animated */}
-              <motion.a 
-                href={project.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block w-full aspect-video bg-[#fdfcf0] rounded-[1.5rem] border-[3px] border-dashed mb-6 overflow-hidden relative group/iframe shadow-inner"
-                style={{ borderColor: project.accent }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <iframe 
-                  src={project.link} 
-                  title={`${project.title} Preview`}
-                  className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] origin-top scale-[0.28] md:scale-[0.32] border-none pointer-events-none transition-opacity duration-700 opacity-90 group-hover/iframe:opacity-100"
-                  loading="lazy"
-                />
-                
-                {/* Overlay Shimmer for Depth */}
-                <motion.div 
-                  animate={{ x: ['-100%', '200%'] }}
-                  transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none skew-x-12"
-                />
-
-                <div 
-                  className="absolute bottom-3 right-3 text-white text-[10px] px-3 py-1.5 rounded-lg font-black uppercase shadow-lg flex items-center gap-2 z-10"
-                  style={{ backgroundColor: project.accent }}
-                >
-                  <MousePointer2 size={10} /> Visit Live Site
-                </div>
-              </motion.a>
-
-              <div className="flex justify-between items-center mb-4">
-                <motion.div 
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  className="text-white px-4 py-1.5 rounded-full text-[10px] font-black border-[2.5px] border-[#8b5a2b] -rotate-1 shadow-md uppercase flex items-center gap-2"
-                  style={{ backgroundColor: project.accent }}
-                >
-                  {project.id === 6 ? <ShoppingCart size={12} /> : project.id === 3 ? <Users size={12} /> : (project.id === 2 || project.id === 5) ? <PawPrint size={12} /> : project.id === 4 ? <ChefHat size={12} /> : <Sparkles size={12} />}
-                  {project.type}
-                </motion.div>
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
-                >
-                  <Heart size={22} className="text-[#c45a5a]" fill="#c45a5a" />
-                </motion.div>
-              </div>
-
-              <h3 className="text-2xl font-[1000] text-[#5d3d1e] mb-2 uppercase tracking-tight">
-                {project.title} {project.emoji}
-              </h3>
-              
-              <p className="text-[15px] font-bold text-[#5d3d1e]/90 leading-snug mb-6 italic">
-                {project.description}
-              </p>
-
-              <div className="bg-[#fdfcf0] border-[3px] border-[#8b5a2b] rounded-2xl p-5 mb-6 border-dashed bg-opacity-50">
-                <span className="text-[11px] font-[1000] uppercase text-[#8b5a2b] block mb-3 tracking-[0.1em]">
-                  📁 Project Manifest / Status:
-                </span>
-                <ul className="space-y-3">
-                  {project.items?.map((item, idx) => (
-                    <motion.li 
-                      key={idx} 
-                      whileHover={{ x: 5 }}
-                      className="text-[13px] font-black text-[#3d5223] flex justify-between items-center"
-                    >
-                      <span className="flex items-center gap-3">
-                        <div className="w-2.5 h-2.5 rounded-full shadow-sm" style={{ backgroundColor: project.accent }} />
-                        {item.split(' - ')[0]}
-                      </span>
-                      <span className="text-[#c45a5a] bg-[#c45a5a]/10 px-2.5 py-1 rounded-md border-2 border-[#c45a5a]/20">
-                        {item.split(' - ')[1]}
-                      </span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-auto flex items-center justify-between pt-4 gap-4">
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map(tag => (
-                    <motion.span 
-                      key={tag} 
-                      variants={tagVariants}
-                      whileHover="hover"
-                      className="text-[10px] font-black bg-[#8b5a2b] text-white px-2.5 py-1 rounded shadow-sm uppercase"
-                    >
-                      {tag}
-                    </motion.span>
-                  ))}
-                </div>
-                <motion.a 
-                  href={project.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="p-3 bg-[#c45a5a] text-white rounded-2xl shadow-lg border-[3px] border-[#8b5a2b]"
-                >
-                  <ExternalLink size={20} strokeWidth={3} />
-                </motion.a>
-              </div>
-            </div>
+            <Star fill="currentColor" size={24} />
           </motion.div>
-        ))}
-      </div>
+          <div>
+            <h2 className="text-3xl font-[900] text-[#5d3d1e] uppercase tracking-tighter italic">The Archive</h2>
+            <p className="text-sm font-black text-[#4a632a] uppercase tracking-widest">Hand-crafted code & design</p>
+          </div>
+        </motion.div>
 
-      <motion.div 
-        variants={cardVariants}
-        className="flex justify-center py-10"
-      >
+        {/* CARDS GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {projects.map((project) => (
+            <motion.div 
+              key={project.id}
+              variants={cardVariants}
+              whileHover="hover"
+              className="relative group col-span-1 flex flex-col"
+            >
+              <div className="absolute inset-0 bg-[#8b5a2b] rounded-[2.5rem] translate-x-3 translate-y-3 opacity-15 group-hover:translate-x-4 group-hover:translate-y-4 transition-transform pointer-events-none" />
+              
+              <div className="relative bg-white border-[4px] border-[#8b5a2b] rounded-[2.5rem] p-7 shadow-md overflow-hidden h-full flex flex-col justify-between">
+                <div>
+                  <motion.a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block w-full aspect-video bg-[#fdfcf0] rounded-[1.5rem] border-[3px] border-dashed mb-6 overflow-hidden relative group/iframe shadow-inner"
+                    style={{ borderColor: project.accent }}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <iframe 
+                      src={project.link} 
+                      title={`${project.title} Preview`}
+                      className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] origin-top scale-[0.28] md:scale-[0.32] border-none pointer-events-none transition-all duration-300 opacity-90 group-hover/iframe:opacity-100"
+                      loading="lazy"
+                    />
+                    
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                      <motion.div 
+                        animate={{ x: ['-150%', '250%'] }}
+                        transition={{ 
+                          repeat: Infinity, 
+                          duration: 2.5, 
+                          ease: "easeInOut",
+                          repeatDelay: 1 
+                        }}
+                        className="w-1/2 h-full absolute top-0 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-25deg]"
+                      />
+                    </div>
+
+                    <div 
+                      className="absolute bottom-3 right-3 text-white text-[10px] px-3 py-1.5 rounded-lg font-black uppercase shadow-lg flex items-center gap-2 z-10 border border-white/20"
+                      style={{ backgroundColor: project.accent }}
+                    >
+                      <MousePointer2 size={10} /> Visit Live Site
+                    </div>
+                  </motion.a>
+
+                  <div className="flex justify-between items-center mb-4">
+                    <motion.div 
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      className="text-white px-4 py-1.5 rounded-full text-[10px] font-black border-[2.5px] border-[#8b5a2b] -rotate-1 shadow-md uppercase flex items-center gap-2"
+                      style={{ backgroundColor: project.accent }}
+                    >
+                      {project.id === 8 ? <ImageIcon size={12} /> : project.id === 6 ? <ShoppingCart size={12} /> : project.id === 3 ? <Users size={12} /> : (project.id === 2 || project.id === 5) ? <PawPrint size={12} /> : (project.id === 4 || project.id === 7) ? <ChefHat size={12} /> : <Sparkles size={12} />}
+                      {project.type}
+                    </motion.div>
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ repeat: Infinity, duration: 2 }}
+                    >
+                      <Heart size={22} className="text-[#c45a5a]" fill="#c45a5a" />
+                    </motion.div>
+                  </div>
+
+                  <h3 className="text-2xl font-[1000] text-[#5d3d1e] mb-2 uppercase tracking-tight">
+                    {project.title} {project.emoji}
+                  </h3>
+                  
+                  <p className="text-[15px] font-bold text-[#8b5a2b] leading-snug mb-6 italic">
+                    {project.description}
+                  </p>
+
+                  <div className="bg-[#fdfcf0] border-[3px] border-[#8b5a2b] rounded-2xl p-5 mb-6 border-dashed">
+                    <span className="text-[11px] font-[1000] uppercase text-[#8b5a2b] block mb-3 tracking-[0.1em]">
+                      📁 Project Manifest / Status:
+                    </span>
+                    <ul className="space-y-3">
+                      {project.items?.map((item, idx) => (
+                        <motion.li 
+                          key={idx} 
+                          whileHover={{ x: 5 }}
+                          className="text-[13px] font-black text-[#3d5223] flex justify-between items-center gap-2"
+                        >
+                          <span className="flex items-center gap-3 min-w-0">
+                            <div className="w-2.5 h-2.5 rounded-full shadow-sm shrink-0" style={{ backgroundColor: project.accent }} />
+                            <span className="truncate">{item.split(' - ')[0]}</span>
+                          </span>
+                          <span className="text-[#c45a5a] bg-[#c45a5a]/10 px-2.5 py-1 rounded-md border-2 border-[#c45a5a]/20 text-[11px] shrink-0 font-extrabold">
+                            {item.split(' - ')[1]}
+                          </span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="space-y-4 pt-2">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map(tag => (
+                      <motion.span 
+                        key={tag} 
+                        variants={tagVariants}
+                        whileHover="hover"
+                        className="text-[10px] font-black bg-[#8b5a2b] text-white px-2.5 py-1 rounded shadow-sm uppercase border border-[#8b5a2b]/20"
+                      >
+                        {tag}
+                      </motion.span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center justify-between gap-2 pt-2 border-t border-dashed border-[#8b5a2b]/20">
+                    <motion.button
+                      type="button"
+                      onClick={() => setSelectedProject(project)}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="flex-1 flex items-center justify-center gap-2 bg-[#c45a5a] text-white py-2.5 px-3 rounded-xl font-black text-xs uppercase tracking-wider border-b-[3px] border-[#8b5a2b] shadow-sm hover:brightness-110 transition-all cursor-pointer"
+                    >
+                      <Info size={15} />
+                      <span>Details</span>
+                    </motion.button>
+
+                    {project.githubFrontend && (
+                      <motion.a 
+                        href={project.githubFrontend} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        whileHover={{ scale: 1.05, rotate: -3 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-2.5 py-2.5 bg-[#5d3d1e] text-white rounded-xl shadow-md border-[2px] border-[#8b5a2b] flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider"
+                        title="Frontend Repo"
+                      >
+                        <Code2 size={14} />
+                        <span className="hidden sm:inline">Frontend</span>
+                      </motion.a>
+                    )}
+
+                    {project.githubBackend && (
+                      <motion.a 
+                        href={project.githubBackend} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        whileHover={{ scale: 1.05, rotate: 3 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-2.5 py-2.5 bg-[#5d3d1e] text-white rounded-xl shadow-md border-[2px] border-[#8b5a2b] flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider"
+                        title="Backend Repo"
+                      >
+                        <Database size={14} />
+                        <span className="hidden sm:inline">Backend</span>
+                      </motion.a>
+                    )}
+
+                    {project.github && !project.githubFrontend && !project.githubBackend && (
+                      <motion.a 
+                        href={project.github} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        whileHover={{ scale: 1.1, rotate: -5 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-2.5 bg-[#5d3d1e] text-white rounded-xl shadow-md border-[2px] border-[#8b5a2b]"
+                        title="GitHub Repo"
+                      >
+                        <Github size={18} />
+                      </motion.a>
+                    )}
+
+                    <motion.a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="p-2.5 bg-[#8b5a2b] text-white rounded-xl shadow-md border-[2px] border-[#8b5a2b]"
+                      title="Live Site"
+                    >
+                      <ExternalLink size={18} strokeWidth={2.5} />
+                    </motion.a>
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* FOOTER BANNER */}
         <motion.div 
-          animate={{ y: [0, -5, 0] }}
-          transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-          className="bg-[#f2ead3] px-10 py-4 rounded-2xl border-[3px] border-[#8b5a2b] text-sm font-[1000] text-[#8b5a2b] uppercase tracking-[0.3em] shadow-xl rotate-1"
+          variants={cardVariants}
+          className="flex justify-center py-6 md:py-10 px-4 w-full"
         >
-          🌸 More coming soon~ 🌸
+          <motion.div 
+            animate={{ y: [0, -5, 0] }}
+            transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+            className="bg-[#f2ead3] px-6 py-3 md:px-10 md:py-4 rounded-2xl border-[3px] border-[#8b5a2b] text-[10px] sm:text-xs md:text-sm font-[1000] text-[#8b5a2b] uppercase tracking-[0.2em] md:tracking-[0.3em] shadow-xl rotate-1 whitespace-nowrap max-w-full text-center"
+          >
+            🌸 More coming soon~ 🌸
+          </motion.div>
         </motion.div>
       </motion.div>
-    </motion.div>
+
+      {/* DETAILS MODAL OVERLAY */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
+            className="fixed inset-0 bg-[#5d3d1e]/75 backdrop-blur-sm z-50 p-4 sm:p-6 flex items-start justify-center overflow-y-auto pt-50 sm:pt-50 pb-10"
+          >
+            <motion.div
+              initial={{ scale: 0.92, y: 30, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.92, y: 30, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#fdfcf0] border-[4px] border-[#8b5a2b] rounded-[2rem] pt-5 pb-4 px-4 sm:px-6 max-w-lg w-full h-[60vh] max-h-[520px] shadow-[8px_8px_0px_0px_#8b5a2b] relative flex flex-col overflow-hidden shrink-0"
+            >
+              {/* CLOSE BUTTON */}
+              <button
+                type="button"
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-3 right-3 p-1.5 bg-[#c45a5a] text-white rounded-xl border-2 border-[#8b5a2b] hover:bg-[#8b5a2b] transition-colors cursor-pointer z-20 shadow-sm"
+              >
+                <X size={15} />
+              </button>
+
+              {/* MODAL HEADER */}
+              <div className="pr-10 shrink-0 pb-2 border-b border-dashed border-[#8b5a2b]/20">
+                <div 
+                  className="inline-flex items-center gap-1 text-white px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] font-black uppercase mb-1 border border-[#8b5a2b]/20"
+                  style={{ backgroundColor: selectedProject.accent }}
+                >
+                  <Sparkles size={9} /> {selectedProject.type}
+                </div>
+                <h3 className="text-base sm:text-lg font-[1000] text-[#5d3d1e] uppercase tracking-tight leading-tight">
+                  {selectedProject.title} {selectedProject.emoji}
+                </h3>
+              </div>
+
+              {/* SCROLLABLE BODY CONTENT */}
+              <div className="flex-1 min-h-0 overflow-y-auto space-y-3 py-3 pr-1 scrollbar-thin scrollbar-thumb-[#8b5a2b]">
+                {/* EXTENDED DESCRIPTION */}
+                <div className="text-xs text-[#5d3d1e] leading-relaxed bg-[#f2ead3]/50 p-2.5 rounded-xl border-[2px] border-dashed border-[#8b5a2b]/30 space-y-0.5">
+                  <span className="font-black text-[#8b5a2b] uppercase text-[9px] tracking-widest block">
+                    📌 Project Overview
+                  </span>
+                  <p className="font-bold">{selectedProject.fullDetails || selectedProject.description}</p>
+                </div>
+
+                {/* HARD FEATURE HIGHLIGHT */}
+                {selectedProject.hardFeature && (
+                  <div className="bg-[#8b5a2b]/10 p-2.5 rounded-xl border-[2px] border-[#8b5a2b]/30 space-y-0.5">
+                    <span className="font-black text-[#c45a5a] uppercase text-[9px] tracking-widest flex items-center gap-1">
+                      <Zap size={11} /> Key Technical Challenge / Hard Feature
+                    </span>
+                    <p className="text-xs font-black text-[#5d3d1e]">
+                      {selectedProject.hardFeature}
+                    </p>
+                  </div>
+                )}
+
+                {/* CHALLENGES LIST */}
+                {selectedProject.challenges && selectedProject.challenges.length > 0 && (
+                  <div className="space-y-1">
+                    <span className="text-[9px] font-[1000] uppercase text-[#8b5a2b] flex items-center gap-1 tracking-[0.1em]">
+                      <AlertTriangle size={10} /> Dev Challenges Faced
+                    </span>
+                    <ul className="space-y-1">
+                      {selectedProject.challenges.map((challenge, idx) => (
+                        <li key={idx} className="text-[11px] font-extrabold text-[#5d3d1e] bg-white/80 p-1.5 rounded-lg border border-[#8b5a2b]/15 shadow-sm flex items-start gap-1.5">
+                          <span className="text-[#c45a5a] font-black">•</span>
+                          <span>{challenge}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* FUTURE PLANS & UPCOMING FEATURES */}
+                {selectedProject.futurePlans && selectedProject.futurePlans.length > 0 && (
+                  <div className="space-y-1">
+                    <span className="text-[9px] font-[1000] uppercase text-[#4a632a] flex items-center gap-1 tracking-[0.1em]">
+                      <Rocket size={10} /> Future Roadmap & Upcoming Features
+                    </span>
+                    <ul className="space-y-1">
+                      {selectedProject.futurePlans.map((plan, idx) => (
+                        <li key={idx} className="text-[11px] font-extrabold text-[#5d3d1e] bg-[#4a632a]/10 p-1.5 rounded-lg border border-[#4a632a]/20 shadow-sm flex items-start gap-1.5">
+                          <span className="text-[#4a632a] font-black">🚀</span>
+                          <span>{plan}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* MANIFEST LIST */}
+                <div className="space-y-1">
+                  <span className="text-[9px] font-[1000] uppercase text-[#8b5a2b] block tracking-[0.1em]">
+                    📁 Status Manifest
+                  </span>
+                  <ul className="space-y-1">
+                    {selectedProject.items.map((item, idx) => (
+                      <li key={idx} className="text-[11px] font-black text-[#3d5223] flex items-center justify-between gap-2 bg-white/80 p-1.5 rounded-lg border border-[#8b5a2b]/15 shadow-sm">
+                        <span className="flex items-center gap-1.5 min-w-0">
+                          <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: selectedProject.accent }} />
+                          <span className="truncate">{item.split(' - ')[0]}</span>
+                        </span>
+                        <span className="text-[#c45a5a] text-[8px] font-black uppercase bg-[#c45a5a]/10 px-1.5 py-0.5 rounded shrink-0 border border-[#c45a5a]/20">
+                          {item.split(' - ')[1]}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* TECH STACK TAGS */}
+                <div className="flex flex-wrap gap-1 pt-0.5">
+                  {selectedProject.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[8px] font-black bg-[#8b5a2b] text-white px-1.5 py-0.5 rounded shadow-sm uppercase tracking-wide"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* FOOTER ACTION BUTTONS */}
+              <div className="pt-2 border-t border-dashed border-[#8b5a2b]/20 shrink-0 grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                {selectedProject.githubFrontend && (
+                  <a
+                    href={selectedProject.githubFrontend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 bg-[#5d3d1e] text-white py-1.5 px-2 rounded-lg font-black text-[11px] uppercase tracking-wider border-b-[2px] border-[#8b5a2b] shadow-sm hover:brightness-125 transition-all"
+                  >
+                    <Code2 size={13} />
+                    <span>Frontend Repo</span>
+                  </a>
+                )}
+
+                {selectedProject.githubBackend && (
+                  <a
+                    href={selectedProject.githubBackend}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 bg-[#5d3d1e] text-white py-1.5 px-2 rounded-lg font-black text-[11px] uppercase tracking-wider border-b-[2px] border-[#8b5a2b] shadow-sm hover:brightness-125 transition-all"
+                  >
+                    <Database size={13} />
+                    <span>Backend Repo</span>
+                  </a>
+                )}
+
+                {selectedProject.github && !selectedProject.githubFrontend && !selectedProject.githubBackend && (
+                  <a
+                    href={selectedProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 bg-[#5d3d1e] text-white py-1.5 px-2 rounded-lg font-black text-[11px] uppercase tracking-wider border-b-[2px] border-[#8b5a2b] shadow-sm hover:brightness-125 transition-all"
+                  >
+                    <Github size={13} />
+                    <span>Repository</span>
+                  </a>
+                )}
+                
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 bg-[#c45a5a] text-white py-1.5 px-2 rounded-lg font-black text-[11px] uppercase tracking-wider border-b-[2px] border-[#8b5a2b] shadow-sm hover:brightness-110 transition-all col-span-1 sm:col-span-1"
+                >
+                  <ExternalLink size={13} />
+                  <span>Live Demo</span>
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
