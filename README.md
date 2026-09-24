@@ -8,7 +8,8 @@ Welcome to my digital corner of the internet. This is a high-performance, immers
 ### 🔗 Explore the Universe
 * **Live Site:** [st4rligh7.vercel.app](https://st4rligh7.vercel.app/)
 * **Fiverr:** [Hire me for your next project](https://www.fiverr.com/s/XLyy4b2)
-* **Email:** `pixelstudioo003@gmail.com`
+* **LinkedIn:** [Contact me](https://www.linkedin.com/in/naira-mehjabin/)
+* **Email:** `nairamehjabin2014@gmail.com`
 
 ---
 
@@ -29,12 +30,12 @@ I specialize in building "Cozy-Tech" experiences—websites that feel warm and a
 
 Explore the different worlds I've built. Each one is a unique study in UI/UX and performance.
 
-* **🐾 Pawsky Wawsky** | *Documentary-Style Pet Sanctuary*
-  * [View Live Site](https://pawsky-wawsky.vercel.app/)
-* **🍯 Honey Haze** | *Cozy Cafe Business Experience*
-  * [View Live Site](https://honey-haze.vercel.app/)
-* **💎 Pixel Studio** | *Official Studio*
-  * [View Live Site](https://pixel-studio-opal.vercel.app/)
+* **🎨 Chitrabeethi** | *A full-stack art curation platform*
+  * [View Live Site](https://chitrabeethi-client-ten.vercel.app/)
+* ** 🥐 Cinnabloom Bakery** | *A cozy bakery storefront*
+  * [View Live Site](https://cinnabloom-bakery.vercel.app/)
+* **💎 The Dum Pot** | *A premium Biryani delivery experience*
+  * [View Live Site](https://the-dum-pot.vercel.app/)
 
 ---
 
@@ -51,7 +52,7 @@ Explore the different worlds I've built. Each one is a unique study in UI/UX and
 
 I am currently open for freelance opportunities and creative collaborations. Whether you need a corporative high-end business template or a completely unique personal brand, let's turn your vision into pixels.
 
-* **Fiverr:** [Order a Custom Build](https://www.fiverr.com/s/XLyy4b2)
+* **Fiverr:** [Naira_Mehjabin](https://www.fiverr.com/s/AGy3Q5X)
 * **Portfolio:** [st4rligh7.vercel.app](https://st4rligh7.vercel.app/)
 
 ---
