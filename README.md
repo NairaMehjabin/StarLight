@@ -6,7 +6,7 @@ Welcome to my digital corner of the internet. This is a high-performance, immers
 > **Status:** Live & Active. This portfolio is the central hub for all my projects, including Pixel Studio and my specialized web templates.
 
 ### 🔗 Explore the Universe
-* **Live Site:** [st4rligh7.vercel.app](https://st4rligh7.vercel.app/)
+* **Live Site:** [StarLight](https://star-light-three.vercel.app/)
 * **Fiverr:** [Hire me for your next project](https://www.fiverr.com/s/XLyy4b2)
 * **LinkedIn:** [Contact me](https://www.linkedin.com/in/naira-mehjabin/)
 * **Email:** `nairamehjabin2014@gmail.com`
