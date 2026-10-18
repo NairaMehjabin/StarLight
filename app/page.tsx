@@ -219,7 +219,6 @@ export default function Dashboard() {
                 { icon: <Cloud size={24} />, label: "Fiverr", color: "#90be6d", url: "https://www.fiverr.com/s/WER7D77" },
                 { icon: <Apple size={24} />, label: "GitHub", color: "#c45a5a", url: "https://github.com/NairaMehjabin" },
                 { icon: <Cherry size={24} />, label: "LinkedIn", color: "#ef476f", url: "https://www.linkedin.com/in/naira-mehjabin/" },
-                { icon: <Heart size={24} />, label: "Instagram", color: "#ff6b6b", url: "https://www.instagram.com/certi.fried_dora/" },
               ].map((link, i) => (
                 <motion.li key={i} variants={wobbleHover} whileHover="hover" whileTap="tap">
                   <a
@@ -339,57 +338,62 @@ export default function Dashboard() {
         </motion.div>
       </motion.div>
 
-      <AnimatePresence>
-        {isBioModalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+   <AnimatePresence>
+  {isBioModalOpen && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={() => setIsBioModalOpen(false)}
+      /* Placed absolute top-0 with flex justify-center and top padding so it stays near the top */
+      className="absolute inset-0 z-50 flex justify-center items-start pt-8 sm:pt-12 px-4 bg-black/30 backdrop-blur-[2px]"
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0, y: -10 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0, y: -10 }}
+        onClick={(e) => e.stopPropagation()}
+        /* Compact sizing with max-h-[60vh] to stay well above the bottom frame */
+        className="bg-[#fffdf5] border-[4px] border-[#8b5a2b] rounded-[2rem] p-5 sm:p-6 max-w-md w-full max-h-[60vh] overflow-y-auto custom-scrollbar shadow-[8px_8px_0px_0px_#8b5a2b] relative space-y-3"
+      >
+        <button
+          type="button"
+          onClick={() => setIsBioModalOpen(false)}
+          className="absolute top-4 right-4 p-1.5 bg-[#c45a5a] text-white rounded-lg border-2 border-[#8b5a2b] hover:bg-[#8b3a3a] transition-colors z-10"
+        >
+          <X size={16} />
+        </button>
+
+        <div className="flex items-center gap-2 text-[#8b5a2b] font-[1000] text-sm uppercase tracking-wider pr-8">
+          <Sparkles size={16} className="text-[#ffd166]" fill="currentColor" />
+          <span>About Naira</span>
+        </div>
+
+        <div className="text-xs leading-relaxed text-[#5d3d1e] font-medium space-y-2.5 pt-1">
+          <p>
+            I’m a Bangladesh-based Full-Stack Developer with a deep love for building creative, interactive, and thoughtfully crafted web experiences. My programming journey kicked off back in 2024 when I was just 12 years old—driven by a relentless curiosity about how digital interfaces come alive.
+          </p>
+          <p>
+            I thrive on building high-performance web applications, converting Figma concepts into pixel-perfect code, and crafting developer tools. Whether I’m experimenting with cozy folk-art aesthetics or tweaking backend logic, I aim to create software that feels joyful and robust!
+          </p>
+          <p>
+            Beyond the screen, I keep a calm and grounded rhythm with a touch of quiet quirkiness. When I'm not coding, you’ll usually find me practicing Taekwondo or immersed in traditional watercolor painting—a mix that continuously inspires how I design and code!
+          </p>
+        </div>
+
+        <div className="pt-2 flex justify-end">
+          <button
+            type="button"
             onClick={() => setIsBioModalOpen(false)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-transparent"
+            className="bg-[#90be6d] text-white px-4 py-1.5 rounded-xl font-[1000] text-[11px] uppercase tracking-wider border-b-[3px] border-[#5a7d32] shadow-sm hover:translate-y-[1px] transition-all"
           >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-[#fffdf5] border-[5px] border-[#8b5a2b] rounded-[2.5rem] p-6 sm:p-8 max-w-lg w-full shadow-[10px_10px_0px_0px_#8b5a2b] relative space-y-4"
-            >
-              <button
-                type="button"
-                onClick={() => setIsBioModalOpen(false)}
-                className="absolute top-5 right-5 p-2 bg-[#c45a5a] text-white rounded-xl border-2 border-[#8b5a2b] hover:bg-[#8b3a3a] transition-colors"
-              >
-                <X size={18} />
-              </button>
-
-              <div className="flex items-center gap-2 text-[#8b5a2b] font-[1000] text-base uppercase tracking-wider">
-                <Sparkles size={18} className="text-[#ffd166]" fill="currentColor" />
-                <span>About Naira</span>
-              </div>
-
-              <div className="text-xs sm:text-sm leading-relaxed text-[#5d3d1e] font-medium space-y-3 pt-2">
-                <p>
-                  I am a Bangladesh-based Full-Stack Developer with a passion for building creative, interactive web experiences. My journey began with curiosity about how web interfaces work, which quickly grew into building full-stack applications with modern frontend and backend tech.
-                </p>
-                <p>
-                  I specialize in converting Figma designs into clean, high-performance code, experimenting with cozy folk-art aesthetics, and making software that feels both joyful and functionally robust!
-                </p>
-              </div>
-
-              <div className="pt-2 flex justify-end">
-                <button
-                  type="button"
-                  onClick={() => setIsBioModalOpen(false)}
-                  className="bg-[#90be6d] text-white px-5 py-2 rounded-xl font-[1000] text-xs uppercase tracking-wider border-b-[3px] border-[#5a7d32] shadow-sm"
-                >
-                  Close ✨
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            Close ✨
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
     </>
   );
 }

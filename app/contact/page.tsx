@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { Send, Mail, Heart, MessageSquare, User, Sparkles, Smartphone, Navigation, CheckCircle2, Instagram, Image as ImageIcon, X } from 'lucide-react';
+import { Send, Mail, Heart, MessageSquare, User, Sparkles, Smartphone, Navigation, CheckCircle2, Instagram, Image as ImageIcon, X, Phone } from 'lucide-react';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -297,6 +297,37 @@ export default function ContactPage() {
               </p>
             </motion.div>
 
+            {/* DIRECT CONTACT INFO CARD */}
+            <motion.div 
+              variants={stickerHoverVariants}
+              whileHover="hover"
+              className="bg-[#fffdf5] border-[4px] border-[#8b5a2b] rounded-[2.5rem] p-7 shadow-md rotate-1 space-y-4"
+            >
+              <h3 className="text-lg font-[1000] text-[#5d3d1e] uppercase">Direct Contacts</h3>
+              
+              <div className="space-y-3">
+                <a 
+                  href="mailto:nairamehjabin2014@gmail.com"
+                  className="flex items-center gap-3 text-xs font-black text-[#5d3d1e] hover:text-[#c45a5a] transition-colors group"
+                >
+                  <span className="p-2 bg-[#f2ead3] rounded-xl border-2 border-[#8b5a2b] text-[#8b5a2b] group-hover:bg-[#c45a5a] group-hover:text-white transition-colors">
+                    <Mail size={16} strokeWidth={3} />
+                  </span>
+                  <span className="truncate">nairamehjabin2014@gmail.com</span>
+                </a>
+
+                <a 
+                  href="tel:+8801747661314"
+                  className="flex items-center gap-3 text-xs font-black text-[#5d3d1e] hover:text-[#c45a5a] transition-colors group"
+                >
+                  <span className="p-2 bg-[#f2ead3] rounded-xl border-2 border-[#8b5a2b] text-[#8b5a2b] group-hover:bg-[#c45a5a] group-hover:text-white transition-colors">
+                    <Phone size={16} strokeWidth={3} />
+                  </span>
+                  <span>+8801747661314</span>
+                </a>
+              </div>
+            </motion.div>
+
             <motion.div 
               variants={stickerHoverVariants}
               whileHover="hover"
@@ -308,7 +339,7 @@ export default function ContactPage() {
               </p>
               
               <motion.a 
-                href="https://www.instagram.com/certi.fried_dora/?__pwa=1"
+                href="https://www.instagram.com/your_borolox_apu/?__pwa=1"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
                 whileHover={{ scale: 1.05, rotate: 2 }}

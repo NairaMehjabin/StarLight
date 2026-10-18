@@ -3,96 +3,74 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Terminal, Cpu, Globe, ShieldCheck, Hammer, Activity, Heart, Sparkles 
+  Globe, ShieldCheck, Hammer, Activity, Heart, Sparkles, Briefcase, ExternalLink, CheckCircle2 
 } from "lucide-react";
 
 const SkillShard = ({ name, level, index }: { name: string; level: string; index: number }) => {
   const [hovered, setHovered] = useState(false);
 
-  // Theme Colors
-  const themeColor = "#8b5a2b";   // Primary Brown
-  const hoverColor = "#e5989b";   // Dusty Rose Pink
-  const softPinkBg = "#fff1f2";   // Soft Dusty Pink
-
-  const hoverTerms = ["Blooming...", "Flourishing...", "Nurturing...", "Sprouting..."];
+  const hoverTerms = ["Blooming ✨", "Flourishing 🎨", "Nurturing 🌿", "Sprouting 🌱"];
   const currentTerm = hoverTerms[index % hoverTerms.length];
-
-  const getLayout = (i: number) => {
-    // Ensuring grid spans are responsive
-    const layouts = ["md:col-span-2", "md:col-span-1", "md:col-span-1", "md:col-span-1"];
-    return layouts[i % layouts.length];
-  };
 
   return (
     <motion.div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      initial={{ opacity: 0, scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      whileHover={{ y: -5, rotate: index % 2 === 0 ? 1 : -1 }}
-      transition={{ delay: index * 0.03, type: "spring", stiffness: 300 }}
-      className={`${getLayout(index)} relative group overflow-hidden border-2 border-[#8b5a2b]/20 rounded-[2rem] shadow-lg`}
-      style={{ backgroundColor: softPinkBg }}
+      whileHover={{ y: -4, rotate: index % 2 === 0 ? 1 : -1 }}
+      transition={{ delay: index * 0.03, type: "spring", stiffness: 250 }}
+      className="relative group bg-[#fffdf5] border-[3px] border-[#8b5a2b] rounded-[1.8rem] p-4 shadow-[4px_4px_0px_0px_#8b5a2b] overflow-hidden flex flex-col justify-between min-h-[140px]"
     >
-      <div className="p-5 h-full flex flex-col justify-between min-h-[150px]">
-        <Sparkles 
-          size={14} 
-          className="absolute top-4 right-4 opacity-20 group-hover:opacity-100 transition-opacity" 
-          style={{ color: themeColor }} 
-        />
-
-        <div className="relative z-10">
-          <div className="flex items-center gap-2 mb-3">
-             <Heart size={10} fill={themeColor} style={{ color: themeColor }} className="opacity-40" />
-             <span className="text-[10px] font-bold text-[#8b5a2b]/60 uppercase tracking-widest">Skill_{index + 1}</span>
-          </div>
-          <h3 className="text-xl font-black text-[#5d3d1e] uppercase tracking-tighter leading-tight drop-shadow-sm">
-            {name}
-          </h3>
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-1.5">
+          <Heart size={10} fill="#ef476f" className="text-[#ef476f]" />
+          <span className="text-[9px] font-[1000] text-[#8b5a2b]/70 uppercase tracking-widest">
+            SKILL_0{index + 1}
+          </span>
         </div>
-
-        <div className="relative z-10 mt-4 flex items-center justify-between">
-          <div className="flex gap-1.5">
-            {[...Array(5)].map((_, i) => (
-              <motion.div 
-                key={i} 
-                animate={hovered ? { scale: [1, 1.2, 1] } : {}}
-                transition={{ delay: i * 0.1 }}
-                className="w-2.5 h-2.5 rounded-full shadow-inner" 
-                style={{ backgroundColor: i < 4 ? themeColor : '#ffffff90', border: `1px solid ${themeColor}40` }} 
-              />
-            ))}
-          </div>
-          <span className="text-[10px] font-black italic text-[#8b5a2b]">{level}</span>
-        </div>
-
-        <AnimatePresence>
-          {hovered && (
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 z-20 p-5 flex flex-col justify-center items-center text-center backdrop-blur-md"
-              style={{ backgroundColor: `${hoverColor}f0` }}
-            >
-              <div className="bg-white/20 p-3 rounded-full mb-2">
-                <Activity size={24} className="text-white" />
-              </div>
-              <p className="text-[9px] tracking-[0.3em] font-bold text-white/80 uppercase">{currentTerm}</p>
-              <p className="text-lg font-black text-white uppercase">{name}</p>
-              <div className="mt-3 w-12 h-1 bg-white/40 rounded-full overflow-hidden">
-                <motion.div 
-                  initial={{ x: "-100%" }} 
-                  animate={{ x: "0%" }} 
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                  className="h-full bg-white" 
-                />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <Sparkles size={14} className="text-[#ffd166]" fill="currentColor" />
       </div>
+
+      <div>
+        <h3 className="text-lg font-[1000] text-[#5d3d1e] uppercase tracking-tight leading-tight">
+          {name}
+        </h3>
+      </div>
+
+      <div className="mt-4 flex items-center justify-between pt-2 border-t-2 border-dashed border-[#8b5a2b]/20">
+        <div className="flex gap-1">
+          {[...Array(5)].map((_, i) => (
+            <span
+              key={i}
+              className={`w-2 h-2 rounded-full border border-[#8b5a2b] ${
+                i < 4 ? "bg-[#90be6d]" : "bg-white"
+              }`}
+            />
+          ))}
+        </div>
+        <span className="text-[9px] font-[1000] text-[#c45a5a] bg-[#c45a5a]/10 px-2 py-0.5 rounded-md border border-[#c45a5a]/30 uppercase">
+          {level}
+        </span>
+      </div>
+
+      <AnimatePresence>
+        {hovered && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            exit={{ opacity: 0, y: 10 }}
+            className="absolute inset-0 z-20 p-4 bg-[#ffd166] border-[3px] border-[#8b5a2b] flex flex-col justify-center items-center text-center space-y-1"
+          >
+            <Activity size={20} className="text-[#5d3d1e]" />
+            <span className="text-[9px] font-[1000] text-[#8b5a2b] uppercase tracking-widest">
+              {currentTerm}
+            </span>
+            <p className="text-sm font-[1000] text-[#5d3d1e] uppercase italic">{name}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
@@ -100,8 +78,8 @@ const SkillShard = ({ name, level, index }: { name: string; level: string; index
 export default function SkillsPage() {
   const categories = [
     { 
-      title: "Frontend Meadow", 
-      icon: <Globe />, 
+      title: "Frontend Skills", 
+      icon: <Globe size={20} />, 
       skills: [
         { name: "TypeScript", level: "Expert" }, 
         { name: "JavaScript", level: "Expert" }, 
@@ -113,8 +91,8 @@ export default function SkillsPage() {
       ] 
     },
     { 
-      title: "Backend Garden", 
-      icon: <ShieldCheck />, 
+      title: "Backend Skills", 
+      icon: <ShieldCheck size={20} />, 
       skills: [
         { name: "Node.js", level: "Advanced" },
         { name: "MongoDB", level: "Advanced" },
@@ -128,8 +106,8 @@ export default function SkillsPage() {
       ] 
     },
     { 
-      title: "Tool Shed", 
-      icon: <Hammer />, 
+      title: "Tools & Workflow", 
+      icon: <Hammer size={20} />, 
       skills: [
         { name: "Framer Motion", level: "Expert" }, 
         { name: "VS Code", level: "Power User" },
@@ -137,76 +115,116 @@ export default function SkillsPage() {
         { name: "Render", level: "Advanced" },
         { name: "Git & GitHub", level: "Advanced" },
         { name: "Daisy UI", level: "Expert" },
-        { name: "Figma conversion", level: "Expert" }
+        { name: "Figma Conversion", level: "Expert" }
       ] 
     }
   ];
 
   return (
-    <div className="selection:bg-[#ffb4a2] selection:text-white pb-20">
-      <main className="relative z-10 max-w-6xl mx-auto px-6 py-12">
-        <header className="mb-20 border-b-4 border-dashed border-[#8b5a2b]/20 pb-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <div className="flex items-center gap-2 mb-3 bg-[#ffd166]/20 w-fit px-3 py-1 rounded-full border border-[#ffd166]/40">
-                <Sparkles size={12} className="text-[#8b5a2b]" />
-                <span className="text-[10px] font-bold tracking-[0.2em] text-[#8b5a2b] uppercase">Archive_Collection_2026</span>
-              </div>
-              <h1 className="text-6xl md:text-8xl font-black text-[#5d3d1e] uppercase italic leading-[0.8] tracking-tighter">
-                Skill<br />
-                <span className="text-[#8b5a2b] drop-shadow-[4px_4px_0px_rgba(139,90,43,0.1)]">Meadow</span>
-              </h1>
-            </div>
-            <div className="bg-[#f2ead3] p-4 rounded-2xl border-2 border-[#8b5a2b]/10 font-serif italic text-sm text-[#8b5a2b]/80 max-w-xs">
-              "A collection of digital seeds planted and grown with care."
-            </div>
+    <div className="p-6 md:p-12 space-y-12 max-w-6xl mx-auto">
+      {/* HEADER SECTION */}
+      <header className="border-b-[4px] border-dashed border-[#8b5a2b] pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 bg-[#ffd166] text-[#5d3d1e] px-3 py-1 rounded-lg border-2 border-[#8b5a2b] font-[1000] text-[10px] uppercase tracking-wider w-fit shadow-[2px_2px_0px_0px_#8b5a2b]">
+            <Sparkles size={12} fill="currentColor" />
+            <span>Naira's Craft & Skills</span>
           </div>
-        </header>
+          <h1 className="text-4xl sm:text-5xl font-[1000] text-[#5d3d1e] uppercase tracking-tighter">
+            Skills & Experience
+          </h1>
+        </div>
+        <p className="text-xs font-[1000] text-[#8b5a2b] uppercase tracking-widest bg-[#f2ead3] p-3 rounded-xl border-2 border-[#8b5a2b] max-w-xs shadow-sm">
+          "A cozy collection of digital tools planted and grown with care."
+        </p>
+      </header>
 
-        <div className="space-y-32">
-          {categories.map((cat) => (
-            <section key={cat.title}>
-              <div className="flex items-center gap-4 mb-10 group">
-                <motion.div 
-                  whileHover={{ rotate: 360 }}
-                  className="p-3 rounded-2xl shadow-sm border-2 border-[#8b5a2b]/10 bg-white" 
-                  style={{ color: "#8b5a2b" }}
-                >
-                   {React.cloneElement(cat.icon as React.ReactElement<any>, { size: 24 })}
-                </motion.div>
-                <h2 className="text-3xl md:text-4xl font-black uppercase italic tracking-tighter text-[#5d3d1e]">
-                  {cat.title}
-                </h2>
-                <div className="h-[2px] flex-1 bg-gradient-to-r from-[#8b5a2b]/20 to-transparent" />
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5">
-                {cat.skills.map((skill, idx) => (
-                  <SkillShard 
-                    key={skill.name} 
-                    {...skill} 
-                    index={idx} 
-                  />
-                ))}
-              </div>
-            </section>
-          ))}
+      {/* WORK EXPERIENCE SECTION */}
+      <section className="space-y-6">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-[#ef476f] text-white rounded-xl border-[3px] border-[#8b5a2b] shadow-md">
+            <Briefcase size={22} strokeWidth={3} />
+          </div>
+          <h2 className="text-2xl font-[1000] text-[#5d3d1e] uppercase tracking-tight">
+            Work Experience
+          </h2>
         </div>
 
-        <footer className="mt-40 pt-10 flex flex-col items-center gap-6">
-          <div className="flex gap-4">
-             <div className="w-3 h-3 rounded-full bg-[#8b5a2b]/40" />
-             <div className="w-3 h-3 rounded-full bg-[#e5989b]/40" />
-             <div className="w-3 h-3 rounded-full bg-[#b5838d]/40" />
-          </div>
-          <div className="flex items-center gap-3 opacity-60">
-            <Cpu size={20} className="text-[#5d3d1e]" />
-            <span className="text-[10px] font-black text-[#5d3d1e] tracking-[0.3em] uppercase">
-              End of Transmission // Hand-forged with love
+        <motion.div 
+          whileHover={{ y: -3 }}
+          className="bg-[#fffdf5] border-[4px] border-[#8b5a2b] rounded-[2.5rem] p-6 sm:p-8 shadow-[8px_8px_0px_0px_#8b5a2b] relative overflow-hidden space-y-5"
+        >
+          {/* Tape Accent */}
+          <div className="absolute -top-3 left-10 w-28 h-7 bg-[#ffd166]/80 -rotate-2 border-x-2 border-[#8b5a2b]/20 shadow-xs pointer-events-none" />
+
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b-2 border-dashed border-[#8b5a2b]/30 pb-4">
+            <div>
+              <span className="bg-[#90be6d] text-white text-[10px] px-3 py-1 font-[1000] rounded-md tracking-widest uppercase border-2 border-[#5a7d32] shadow-sm inline-block mb-1">
+                Frontend Designer
+              </span>
+              <h3 className="text-2xl font-[1000] text-[#5d3d1e] uppercase flex items-center gap-2">
+                Shobdotori.com
+                <a 
+                  href="https://shobdotori.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[#c45a5a] hover:scale-110 transition-transform"
+                >
+                  <ExternalLink size={18} />
+                </a>
+              </h3>
+            </div>
+            <span className="bg-[#f2ead3] text-[#8b5a2b] border-2 border-[#8b5a2b] px-4 py-1.5 rounded-xl font-[1000] text-xs uppercase tracking-wider w-fit shadow-xs">
+              Nov 2025 – Present
             </span>
           </div>
-        </footer>
-      </main>
+
+          <p className="text-xs sm:text-sm font-[1000] text-[#5d3d1e]/80 leading-relaxed">
+            Remote Frontend Designer for Shobdotori.com—a prominent online bookstore platform in Bangladesh. Responsible for designing clean, intuitive web interfaces, translating complex catalog and e-commerce workflows into performant layouts, and delivering cozy user-first digital experiences.
+          </p>
+
+          <div className="flex flex-wrap gap-2 pt-1">
+            {["Frontend Design", "UI/UX", "Next.js", "Tailwind CSS", "Figma to Code"].map((tag) => (
+              <span key={tag} className="text-[10px] font-black text-[#5a7d32] bg-[#90be6d]/20 px-3 py-1 rounded-lg border border-[#90be6d]/40">
+                #{tag.toUpperCase()}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* SKILLS CATEGORIES */}
+      <div className="space-y-12">
+        {categories.map((cat) => (
+          <section key={cat.title} className="space-y-6">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-[#ffd166] text-[#8b5a2b] rounded-xl border-[3px] border-[#8b5a2b] shadow-md">
+                {cat.icon}
+              </div>
+              <h2 className="text-xl sm:text-2xl font-[1000] text-[#5d3d1e] uppercase tracking-tight">
+                {cat.title}
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {cat.skills.map((skill, idx) => (
+                <SkillShard key={skill.name} {...skill} index={idx} />
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      {/* FOOTER ACCENT */}
+      <footer className="pt-8 border-t-[4px] border-dashed border-[#8b5a2b]/30 flex flex-col items-center gap-3 text-center">
+        <div className="flex gap-2">
+          <span className="w-3 h-3 rounded-full bg-[#90be6d] border border-[#8b5a2b]" />
+          <span className="w-3 h-3 rounded-full bg-[#ffd166] border border-[#8b5a2b]" />
+          <span className="w-3 h-3 rounded-full bg-[#ef476f] border border-[#8b5a2b]" />
+        </div>
+        <span className="text-[10px] font-[1000] text-[#8b5a2b] uppercase tracking-[0.2em]">
+          Crafted with love & detail // st4rligh7 2026
+        </span>
+      </footer>
     </div>
   );
 }
